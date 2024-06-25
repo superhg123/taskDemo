@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import checkIcon from "./assets/filecheck.svg";
 import "./App.css" ;
 import Task from "./assets/Task.jsx";
-import task from "./assets/Task.jsx";
 
 function App() {
     const [tasks, setTasks] = useState([]);
@@ -13,7 +12,7 @@ function App() {
     const [onUpdate, setOnUpdate] = useState(false);
     const [maxId, setMaxId] = useState(-1);
     const handleDelete = (task) => {
-        fetch('http://192.168.1.65:8080/task/remove', {
+        fetch('http://localhost:8080/task/remove', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +27,7 @@ function App() {
 
     useEffect(() => {
         if(onDownload) {
-            fetch('http://192.168.1.65:8080/task/getTasks')
+            fetch('http://localhost:8080/task/getTasks')
                 .then(res => res.json())
                 .then(data => setTasks(data));
             setOnDownload(false);
@@ -42,7 +41,7 @@ function App() {
                 name: taskName,
                 checked: false
             }
-            fetch('http://192.168.1.65:8080/task/create', {
+            fetch('http://localhost:8080/task/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
